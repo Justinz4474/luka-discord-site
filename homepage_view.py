@@ -10,6 +10,8 @@ def install(application):
     install_deletion(application)
     from music_controls import install as install_music, homepage_markup
     install_music(application)
+    from mp4_music_support import install as install_mp4
+    install_mp4(application)
 
     def home():
         page = base_home()
