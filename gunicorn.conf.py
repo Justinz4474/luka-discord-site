@@ -8,3 +8,5 @@ def post_worker_init(worker):
     inline_editor.install(worker.wsgi)
     from page_builder import install as install_builder
     install_builder(worker.wsgi)
+    from editor_upgrade import install as install_upgrade
+    install_upgrade(worker.wsgi)
