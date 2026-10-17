@@ -3,3 +3,4 @@ gunicorn>=23,<24
 requests>=2.32,<3
 cloudinary>=1.44,<2
 Pillow>=11.3,<13
+imageio-ffmpeg>=0.6,<0.7
