@@ -10,3 +10,5 @@ def post_worker_init(worker):
     install_builder(worker.wsgi)
     from editor_upgrade import install as install_upgrade
     install_upgrade(worker.wsgi)
+    from design_studio import install as install_studio
+    install_studio(worker.wsgi)
