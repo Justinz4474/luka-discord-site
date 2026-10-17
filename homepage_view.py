@@ -6,6 +6,8 @@ def install(application):
     import cms, page_builder, editor_upgrade
     from frame_controls import install as install_frames
     install_frames(application)
+    from deletion_controls import install as install_deletion
+    install_deletion(application)
 
     def home():
         page = base_home()
