@@ -3,3 +3,5 @@ def post_worker_init(worker):
     install(worker.wsgi)
     from crop_editor import install as install_crop
     install_crop(worker.wsgi)
+    from inline_editor import install as install_inline
+    install_inline(worker.wsgi)
