@@ -4,6 +4,8 @@ from flask import render_template_string
 def install(application):
     from app import home as base_home, can_edit
     import cms, page_builder, editor_upgrade
+    from frame_controls import install as install_frames
+    install_frames(application)
 
     def home():
         page = base_home()
