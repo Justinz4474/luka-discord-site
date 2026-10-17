@@ -28,6 +28,8 @@ def initialize():
     application.jinja_env.parse(design_studio.SCRIPT)
     if 'studio' not in application.view_functions:
         design_studio.install(application)
+    from homepage_view import install as install_homepage
+    install_homepage(application)
     rules = {rule.rule for rule in application.url_map.iter_rules()}
     required = {'/studio', '/api/page-settings', '/api/text-boxes', '/api/original-text-styles'}
     missing = required - rules
@@ -45,6 +47,10 @@ def initialize():
         body = response.get_data(as_text=True)
         if response.status_code != 200 or 'id="s-workspace"' not in body or 'id="s-publish"' not in body:
             raise RuntimeError('Approved-editor Studio rendering check failed')
+        response = client.get('/', base_url='https://localhost')
+        body = response.get_data(as_text=True)
+        if response.status_code != 200 or '<section id="inline-toolbar"' in body or 'href="/studio"' not in body:
+            raise RuntimeError('Clean homepage rendering check failed')
     application.extensions['studio_bootstrap_ready'] = True
 
 
@@ -54,4 +60,4 @@ initialize()
 def post_worker_init(worker):
     if worker.wsgi is not application:
         raise RuntimeError('Gunicorn loaded a different application than Studio bootstrap')
-    worker.log.info('Studio verified: routes registered, unauthorized access blocked, approved-editor page renders HTTP 200')
+    worker.log.info('Studio and clean homepage verified: unauthorized access blocked, approved-editor pages render HTTP 200, duplicate homepage panel removed')
