@@ -8,6 +8,8 @@ def install(application):
     install_frames(application)
     from deletion_controls import install as install_deletion
     install_deletion(application)
+    from music_controls import install as install_music, homepage_markup
+    install_music(application)
 
     def home():
         page = base_home()
@@ -17,6 +19,7 @@ def install(application):
         controls = ''
         if can_edit():
             controls = '<a href="/studio" style="position:fixed;top:12px;right:12px;z-index:1100;background:#6347cf;color:white;padding:12px 18px;border-radius:12px;font:14px Arial;text-decoration:none">Open design studio ↗</a>'
-        return page.replace('</body>', cms.CLIENT + boxes + styles + controls + '</body>')
+        music = homepage_markup(can_edit())
+        return page.replace('</body>', cms.CLIENT + boxes + styles + controls + music + '</body>')
 
     application.view_functions['home'] = home
