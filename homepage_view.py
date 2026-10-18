@@ -16,6 +16,8 @@ def install(application):
     install_batch(application)
     from entrance_video import install as install_video
     install_video(application)
+    from animated_background import install as install_background, markup as background_markup
+    install_background(application)
 
     def home():
         page = base_home()
@@ -28,6 +30,6 @@ def install(application):
         music = homepage_markup(can_edit())
         music = music.replace('<summary>♫ Entrance video & music</summary>', '<summary>Alien Stage Music</summary>', 1)
         music += '<style>#music-state,#music-background,#music-spotify,#music-embed,#site-music>p,#site-music>a,#entrance-video-state,#site-music section>p{display:none!important}</style>'
-        return page.replace('</body>', cms.CLIENT + boxes + styles + controls + music + '</body>')
+        return page.replace('</body>', cms.CLIENT + boxes + styles + controls + music + background_markup() + '</body>')
 
     application.view_functions['home'] = home
