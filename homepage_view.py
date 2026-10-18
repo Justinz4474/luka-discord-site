@@ -26,6 +26,7 @@ def install(application):
         if can_edit():
             controls = '<a href="/studio" style="position:fixed;top:12px;right:12px;z-index:1100;background:#6347cf;color:white;padding:12px 18px;border-radius:12px;font:14px Arial;text-decoration:none">Open design studio ↗</a>'
         music = homepage_markup(can_edit())
+        music = music.replace('<summary>♫ Entrance video & music</summary>', '<summary>Alien Stage Music</summary>', 1)
         music += '<style>#music-state,#music-background,#music-spotify,#music-embed,#site-music>p,#site-music>a,#entrance-video-state,#site-music section>p{display:none!important}</style>'
         return page.replace('</body>', cms.CLIENT + boxes + styles + controls + music + '</body>')
 
