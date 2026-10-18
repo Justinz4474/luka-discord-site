@@ -14,6 +14,8 @@ def install(application):
     install_mp4(application)
     from batch_music import install as install_batch
     install_batch(application)
+    from entrance_video import install as install_video
+    install_video(application)
 
     def home():
         page = base_home()
