@@ -18,6 +18,8 @@ def install(application):
     install_video(application)
     from animated_background import install as install_background, markup as background_markup
     install_background(application)
+    from starfield_background import install as install_starfield
+    install_starfield(application)
 
     def home():
         page = base_home()
