@@ -20,6 +20,8 @@ def install(application):
     install_background(application)
     from starfield_background import install as install_starfield
     install_starfield(application)
+    from studio_background_sync import install as install_background_sync
+    install_background_sync(application)
 
     def home():
         page = base_home()
