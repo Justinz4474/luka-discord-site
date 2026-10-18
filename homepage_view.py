@@ -22,6 +22,8 @@ def install(application):
     install_starfield(application)
     from studio_background_sync import install as install_background_sync
     install_background_sync(application)
+    from discord_member_counts import install as install_counts, CLIENT as counts_markup
+    install_counts(application)
 
     def home():
         page = base_home()
@@ -34,6 +36,6 @@ def install(application):
         music = homepage_markup(can_edit())
         music = music.replace('<summary>♫ Entrance video & music</summary>', '<summary>Alien Stage Music</summary>', 1)
         music += '<style>#music-state,#music-background,#music-spotify,#music-embed,#site-music>p,#site-music>a,#entrance-video-state,#site-music section>p{display:none!important}</style>'
-        return page.replace('</body>', cms.CLIENT + boxes + styles + controls + music + background_markup() + '</body>')
+        return page.replace('</body>', cms.CLIENT + boxes + styles + controls + music + background_markup() + counts_markup + '</body>')
 
     application.view_functions['home'] = home
